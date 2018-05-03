@@ -15,7 +15,6 @@
 -->
 
 <launch>
-  <param name="/use_sim_time" value="true" />
 
   <node name="cartographer_node" pkg="cartographer_ros"
       type="cartographer_node" args="
@@ -26,7 +25,7 @@
 
   <node name="flat_world_imu_node" pkg="cartographer_turtlebot"
       type="cartographer_flat_world_imu_node" output="screen">
-    <remap from="imu_in" to="/mobile_base/sensors/imu_data_raw" />
+    <remap from="imu_in" to="/mobile_base/sensors/imu_data" />
     <remap from="imu_out" to="/imu" />
   </node>
 
@@ -38,6 +37,4 @@
   <node name="rviz" pkg="rviz" type="rviz" required="true"
       args="-d $(find cartographer_turtlebot
           )/configuration_files/demo_turtlebot.rviz" />
-  <node name="playbag" pkg="rosbag" type="play"
-      args="--clock $(arg bag_filename)" />
 </launch>
